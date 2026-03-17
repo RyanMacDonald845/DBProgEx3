@@ -46,11 +46,14 @@ namespace DBProgEx3
 
         private static void Q2()
         {
-            SqlConnection connection = new SqlConnection(connectionString);
+            SqlConnection? connection = null;
+            SqlCommand? cmd = null;
+            SqlDataReader? reader = null;
 
             try
             {
-                SqlCommand cmd = new SqlCommand();
+                connection = new SqlConnection(connectionString);
+                cmd = new SqlCommand();
 
                 cmd.Connection = connection; //first connect the command
                 cmd.CommandText = "SELECT * FROM Shippers"; // second write your query
@@ -59,7 +62,7 @@ namespace DBProgEx3
 
                 connection.Open();//open a connection after esstablishing the command
 
-                SqlDataReader reader = cmd.ExecuteReader();  // run the reader
+                reader = cmd.ExecuteReader();  // run the reader
 
                 if (reader.HasRows)
                 {
